@@ -125,12 +125,11 @@
 }
 
 body {
-	font-family: var(--ff-poppins);
-	background-color: var(--white);
-	line-height: var(--lh-1);
-	-webkit-font-smoothing: antialiased;
+    font-family: var(--ff-poppins);
+    background-color: var(--body-bg); /* Zmienione z var(--white) na var(--body-bg) */
+    line-height: var(--lh-1);
+    -webkit-font-smoothing: antialiased;
 }
-
 img,
 picture,
 video,
