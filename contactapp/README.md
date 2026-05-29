@@ -1,16 +1,45 @@
-# React + Vite
+# 📱 ContactApp - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nowoczesna aplikacja internetowa do zarządzania listą kontaktów, stworzona w oparciu o bibliotekę React oraz szybkie narzędzie budowania Vite. Projekt pozwala na wygodne przeglądanie, dodawanie oraz usuwanie kontaktów w intuicyjnym interfejsie użytkownika.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Funkcje aplikacji
 
-## React Compiler
+* **Zarządzanie kontaktami:** Pełna możliwość dynamicznego dodawania nowych osób do listy.
+* **Usuwanie wpisów:** Szybkie usuwanie nieaktualnych kontaktów z bazy danych (wbudowana integracja z API).
+* **Powiadomienia Toast:** Interaktywne komunikaty informujące użytkownika o sukcesie lub błędzie operacji dzięki `ToastService.js`.
+* **Responsywny design:** Interfejs dostosowany do wyświetlania na ekranach komputerów oraz urządzeń mobilnych.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologia
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Projekt został zbudowany przy użyciu nowoczesnego stosu technologicznego:
+
+* **React** – Biblioteka JavaScript do budowy interfejsów użytkownika.
+* **Vite** – Niezwykle szybkie narzędzie do budowania i serwowania aplikacji.
+* **ESLint** – Narzędzie do statycznej analizy kodu zapewniające wysoką jakość i spójność stylistyczną.
+* **Git** – System kontroli wersji dbający o historię zmian.
+
+---
+
+## 🚀 Jak uruchomić projekt lokalnie?
+
+Aby uruchomić aplikację na swoim komputerze, upewnij się, że masz zainstalowane środowisko **Node.js**, a następnie wykonaj poniższe kroki w terminalu:
+
+### 1. Sklonuj repozytorium
+```bash
+git clone [https://github.com/StarkusNt/contactapp.git](https://github.com/StarkusNt/contactapp.git)
+cd contactapp
+```
+
+### 2. Zainstaluj wszystkie wymagane zależności projektu
+```bash
+npm install
+```
+
+# 3. Uruchom lokalny serwer deweloperski
+```bash
+npm run dev
+```
