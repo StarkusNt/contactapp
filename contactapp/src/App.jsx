@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
-import './App.css'
-import { getContacts, saveContact, updateContact, updatePhoto } from './api/ContactService'
+import 'react-toastify/dist/ReactToastify.css';
+import { getContacts, saveContact, updateContact, updatePhoto, deleteContact } from './api/ContactService'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import Header from './components/Header'
 import ContactList from './components/ContactList'
 import ContactDetail from './components/ContactDetail';
-
 import { ToastContainer } from 'react-toastify';
+import { toastError } from './api/ToastService'
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
   });
 
 
-  const getAllContacts = async (page = 0, size = 9) => {
+  const getAllContacts = async (page = 0, size = 12) => {
     try {
       setCurrentPage(page);
       const { data } = await getContacts(page, size);
@@ -34,6 +34,7 @@ function App() {
     }
     catch (error) {
       console.log(error);
+      toastError(error.message);
     }
   }
 
@@ -44,20 +45,32 @@ function App() {
       getAllContacts();
     } catch (error) {
       console.log(error);
-      //toastError(error.message);
+      toastError(error.message);
     }
   };
 
-const updateImage = async (formData) => {
+const deleteContactById = async (id) => {
   try {
-    const { data: photoUrl } = await updatePhoto(formData);
-    return photoUrl; // DODANO: zwrócenie nowego adresu URL zdjęcia
+    const response = await deleteContact(id);
+    console.log(response.data);
   } catch (error) {
     console.log(error);
+    toastError(error.message);
   }
 };
-  
-    const onChange = (event) => {
+
+
+  const updateImage = async (formData) => {
+    try {
+      const { data: photoUrl } = await updatePhoto(formData);
+      return photoUrl;
+    } catch (error) {
+      console.log(error);
+      toastError(error.message)
+    }
+  };
+
+  const onChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
     console.log(values);
   };
@@ -85,6 +98,7 @@ const updateImage = async (formData) => {
       getAllContacts();
     } catch (error) {
       console.log(error);
+      toastError(error.message)
     }
   };
 
@@ -106,7 +120,7 @@ const updateImage = async (formData) => {
           <Routes>
             <Route path='/' element={<Navigate to={'/contacts'} />} />
             <Route path="contacts" element={<ContactList data={data} currentPage={currentPage} getAllContacts={getAllContacts} />} />
-            <Route path="contacts/:id" element={<ContactDetail  updateContact={updateContact} updateImage={updateImage}/>} />
+            <Route path="contacts/:id" element={<ContactDetail updateContact={updateContact} updateImage={updateImage} deleteContact={deleteContactById} />} />
           </Routes>
         </div>
       </main>
@@ -121,7 +135,7 @@ const updateImage = async (formData) => {
         </div>
         <div className="divider"></div>
         <div className="modal__body">
-          <form  onSubmit={handleNewContact}>
+          <form onSubmit={handleNewContact}>
             <div className="user-details">
               <div className="input-box">
                 <span className="details">Name</span>
@@ -149,7 +163,7 @@ const updateImage = async (formData) => {
               </div>
               <div className="file-input">
                 <span className="details">Profile Photo</span>
-                <input type="file" onChange={(event)=> setFile(event.target.files[0])}  ref = {fileRef} name='photo' required />
+                <input type="file" onChange={(event) => setFile(event.target.files[0])} ref={fileRef} name='photo' required />
               </div>
             </div>
             <div className="form_footer">
@@ -159,6 +173,7 @@ const updateImage = async (formData) => {
           </form>
         </div>
       </dialog>
+      <ToastContainer />
     </>
 
 
