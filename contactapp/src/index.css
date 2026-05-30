@@ -617,14 +617,12 @@ input[type=file]::file-selector-button:hover {
 	} */
 }
 
-/* Styl dla wnętrza modala usuwania */
 .modal__body--delete {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   font-size: 15px;
 }
 
-/* Opcjonalnie: Jeśli chcesz elegancko rozsunąć przyciski w stopce */
 .modal__footer {
   display: flex;
   justify-content: flex-end;
