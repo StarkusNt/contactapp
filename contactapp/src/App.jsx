@@ -59,7 +59,6 @@ const deleteContactById = async (id) => {
   }
 };
 
-
   const updateImage = async (formData) => {
     try {
       const { data: photoUrl } = await updatePhoto(formData);
@@ -103,13 +102,11 @@ const deleteContactById = async (id) => {
   };
 
 
-
   const toggleModal = (show) => show ? modalRef.current.showModal() : modalRef.current.close();
 
   useEffect(() => {
     getAllContacts();
   }, []);
-
 
 
   return (
