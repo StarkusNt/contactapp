@@ -38,17 +38,12 @@ function App() {
     }
   }
 
-  const updateContact = async (contact) => {
-    try {
-      const { data } = await saveContact(contact);
-      console.log(data);
-      getAllContacts();
-    } catch (error) {
-      console.log(error);
-      toastError(error.message);
-    }
-  };
+const updateContact = async (contact) => {
+  const { data } = await saveContact(contact);
 
+  console.log(data);
+  getAllContacts();
+};
 const deleteContactById = async (id) => {
   try {
     const response = await deleteContact(id);
