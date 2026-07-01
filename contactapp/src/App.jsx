@@ -38,12 +38,17 @@ function App() {
     }
   }
 
-const updateContact = async (contact) => {
-  const { data } = await saveContact(contact);
-
-  console.log(data);
-  getAllContacts();
+const handleUpdateContact = async (contact) => {
+  try {
+    const { data } = await updateContact(contact.id, contact);
+    console.log(data);
+    getAllContacts();
+  } catch (error) {
+    console.log(error);
+    toastError(error.message);
+  }
 };
+
 const deleteContactById = async (id) => {
   try {
     const response = await deleteContact(id);
@@ -112,7 +117,7 @@ const deleteContactById = async (id) => {
           <Routes>
             <Route path='/' element={<Navigate to={'/contacts'} />} />
             <Route path="contacts" element={<ContactList data={data} currentPage={currentPage} getAllContacts={getAllContacts} />} />
-            <Route path="contacts/:id" element={<ContactDetail updateContact={updateContact} updateImage={updateImage} deleteContact={deleteContactById} />} />
+            <Route path="contacts/:id" element={<ContactDetail updateContact={handleUpdateContact} updateImage={updateImage} deleteContact={deleteContactById} />} />
           </Routes>
         </div>
       </main>
